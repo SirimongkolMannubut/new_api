@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { shirtOrders } from '../../../../types/models'
+import { shirtOrders } from '../../../types/models'
 
 export async function GET() {
   try {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { UserSchema, users } from '../../../../types/models'
-import { signToken } from '../../../../libs/jwt'
+import { UserSchema, users } from '../../../types/models'
+import { signToken } from '../../../libs/jwt'
 
 export async function POST(request: NextRequest) {
   try {
