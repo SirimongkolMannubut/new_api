@@ -35,19 +35,7 @@
 - `GET /api/charities` - ดึงรายการการกุศล
 - `GET /api/charities/:id` - ดึงการกุศลตาม ID
 
-## Donation Endpoints
-- `POST /api/donations` - สร้างการบริจาค
-  ```json
-  {
-    "userId": "string",
-    "charityId": "string", 
-    "amount": "number",
-    "message": "string"
-  }
-  ```
 
-- `GET /api/donations` - ดึงรายการการบริจาค
-- `GET /api/donations/user/:userId` - ดึงการบริจาคของผู้ใช้
 
 ## Response Format
 ```json
