@@ -5,7 +5,7 @@ import styles from './page.module.css'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
-  const [activeEndpoint, setActiveEndpoint] = useState(null)
+  const [activeEndpoint, setActiveEndpoint] = useState<number | null>(null)
   
   useEffect(() => {
     setMounted(true)

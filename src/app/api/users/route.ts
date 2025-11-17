@@ -3,7 +3,8 @@ import { users, UserSchema } from '@/types/models'
 
 export async function GET() {
   try {
-    const allUsers = await users.find({}).toArray()
+    const usersCursor = await users.find({})
+    const allUsers = await usersCursor.toArray()
     
     return NextResponse.json({
       success: true,

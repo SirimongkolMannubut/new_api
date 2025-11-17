@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { v4 as uuidv4 } from 'uuid'
 import { db } from '@/libs/client'
+import { Collection } from 'mongodb'
 import argon2 from 'argon2'
 
 // users model
@@ -102,7 +103,7 @@ export type Transaction = z.infer<typeof TransactionSchema>
 export type ShirtOrder = z.infer<typeof ShirtOrderSchema>
 export type OrderStats = z.infer<typeof OrderStatsSchema>
 // model collections
-export const users = db.collection<User>('users')
-export const wallets = db.collection<Wallet>('wallets')
-export const transactions = db.collection<Transaction>('transactions')
-export const shirtOrders = db.collection<ShirtOrder>('shirtOrders')
+export const users = db.collection('users')
+export const wallets = db.collection('wallets')
+export const transactions = db.collection('transactions')
+export const shirtOrders = db.collection('shirtOrders')

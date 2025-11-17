@@ -3,7 +3,8 @@ import { shirtOrders } from '@/types/models'
 
 export async function GET() {
   try {
-    const orders = await shirtOrders.find({}).toArray()
+    const ordersCursor = await shirtOrders.find({})
+    const orders = await ordersCursor.toArray()
     
     const stats = {
       totalOrders: orders.length,

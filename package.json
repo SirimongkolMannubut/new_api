@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "argon2": "^0.44.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^7.0.0",
     "next": "16.0.3",
     "react": "19.2.0",
