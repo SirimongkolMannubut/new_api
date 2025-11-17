@@ -96,14 +96,43 @@ export const OrderStatsSchema = z.object({
   })),
 })
 
+// charity model
+export const CharitySchema = z.object({
+  uuid: z.uuid().default(uuidv4),
+  name: z.string().min(1, 'Name is required'),
+  description: z.string().min(1, 'Description is required'),
+  targetAmount: z.number().min(0, 'Target amount must be non-negative'),
+  currentAmount: z.number().min(0, 'Current amount must be non-negative').default(0),
+  status: z.enum(['active', 'completed', 'cancelled']).default('active'),
+  createdAt: z.coerce.date().default(() => new Date()),
+  updatedAt: z.coerce.date().default(() => new Date()),
+})
+
+// donation model
+export const DonationSchema = z.object({
+  uuid: z.uuid().default(uuidv4),
+  userId: z.uuid(),
+  charityId: z.uuid(),
+  amount: z.number().min(1, 'Amount must be greater than 0'),
+  message: z.string().optional(),
+  status: z.enum(['pending', 'completed', 'failed']).default('pending'),
+  createdAt: z.coerce.date().default(() => new Date()),
+  updatedAt: z.coerce.date().default(() => new Date()),
+})
+
 // model types
 export type User = z.infer<typeof UserSchema>
 export type Wallet = z.infer<typeof WalletSchema>
 export type Transaction = z.infer<typeof TransactionSchema>
 export type ShirtOrder = z.infer<typeof ShirtOrderSchema>
 export type OrderStats = z.infer<typeof OrderStatsSchema>
+export type Charity = z.infer<typeof CharitySchema>
+export type Donation = z.infer<typeof DonationSchema>
+
 // model collections
 export const users = db.collection('users')
 export const wallets = db.collection('wallets')
 export const transactions = db.collection('transactions')
 export const shirtOrders = db.collection('shirtOrders')
+export const charities = db.collection('charities')
+export const donations = db.collection('donations')
