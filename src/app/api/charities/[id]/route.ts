@@ -3,16 +3,22 @@ import { charities } from '@/types/models'
 import { handleCors, corsHeaders } from '@/libs/cors'
 
 export async function OPTIONS(request: NextRequest) {
-  return handleCors(request)
+  const origin = request.headers.get('origin')
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': origin || 'http://localhost:3000',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    }
+  })
 }
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const corsResponse = handleCors(request)
-  if (corsResponse) return corsResponse
-
   try {
     const { id } = await params
     const charity = await charities.findOne({ uuid: id })
@@ -20,20 +26,18 @@ export async function GET(
     if (!charity) {
       return NextResponse.json(
         { success: false, error: 'Charity not found' },
-        { status: 404, headers: corsHeaders(request.headers.get('origin') || undefined) }
+        { status: 404 }
       )
     }
     
     return NextResponse.json({
       success: true,
       data: charity
-    }, {
-      headers: corsHeaders(request.headers.get('origin') || undefined)
     })
   } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to fetch charity' },
-      { status: 500, headers: corsHeaders(request.headers.get('origin') || undefined) }
+      { status: 500 }
     )
   }
 }

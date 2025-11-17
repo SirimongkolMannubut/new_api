@@ -16,7 +16,7 @@ export function corsHeaders(origin?: string) {
   }
 }
 
-export function handleCors(request: NextRequest) {
+export function handleCors(request: NextRequest): NextResponse | undefined {
   const origin = request.headers.get('origin')
   
   if (request.method === 'OPTIONS') {
@@ -26,5 +26,5 @@ export function handleCors(request: NextRequest) {
     })
   }
   
-  return null
+  return undefined
 }
