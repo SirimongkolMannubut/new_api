@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { users, UserSchema } from '../../types/models'
+import { users, UserSchema } from '@/types/models'
 
 export async function GET() {
   try {

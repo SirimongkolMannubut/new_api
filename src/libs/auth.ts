@@ -1,6 +1,6 @@
 import argon2 from 'argon2'
 import { signToken, verifyToken } from './jwt'
-import { users } from '../types/models'
+import { users } from '@/types/models'
 
 export const hashPassword = async (password: string): Promise<string> => {
   return await argon2.hash(password, { type: argon2.argon2id })
