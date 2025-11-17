@@ -10,6 +10,8 @@ export const UserSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   first_name: z.string().min(1, 'First name is required'),
   last_name: z.string().min(1, 'Last name is required'),
+  email: z.string().email('Invalid email format'),
+  phone: z.string().min(1, 'Phone is required'),
   password: z
     .string()
     .min(6, 'Password must be at least 6 characters')
